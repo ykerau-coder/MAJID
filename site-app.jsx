@@ -70,6 +70,7 @@ function App() {
       navigate(a.getAttribute('data-link'));
       // close mobile menu
       document.getElementById('nav').classList.remove('menu-open');
+      document.body.classList.remove('locked');
     };
     document.addEventListener('click', handler);
     return () => document.removeEventListener('click', handler);
@@ -85,7 +86,11 @@ function App() {
   React.useEffect(() => {
     const b = document.getElementById('burger');
     if (!b) return;
-    const onClick = () => document.getElementById('nav').classList.toggle('menu-open');
+    const onClick = () => {
+      const nav = document.getElementById('nav');
+      const open = nav.classList.toggle('menu-open');
+      document.body.classList.toggle('locked', open);
+    };
     b.addEventListener('click', onClick);
     return () => b.removeEventListener('click', onClick);
   }, []);

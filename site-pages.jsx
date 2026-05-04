@@ -26,8 +26,8 @@ const HomePage = ({ accent, gridStyle, navigate }) =>
           <div className="hero-photo-1" style={{ backgroundImage: `url(${PHOTOS.hero1})` }}></div>
           <div className="hero-photo-2" style={{ backgroundImage: `url(${PHOTOS.kiss})` }}></div>
           <div className="hero-stamp">
-            <div className="num"></div>
-            <div className="lbl"></div>
+            <div className="num">4,9★</div>
+            <div className="lbl">87 avis vérifiés</div>
           </div>
         </div>
       </div>

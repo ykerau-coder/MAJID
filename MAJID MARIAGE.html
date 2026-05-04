@@ -3,7 +3,17 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MAJID MARIAGE — Photographe à Marseille</title>
+<title>MAJID MARIAGE — Photographe mariage, baptême & événements à Marseille</title>
+<meta name="description" content="MAJID MARIAGE — photographe de mariage, baptême et grands événements à Marseille et 150 km autour. Équipe de 3 associés, 12 ans d'expérience, prestation garantie, galerie en ligne sous 7 jours.">
+<meta name="theme-color" content="#f6f2ec">
+<meta property="og:title" content="MAJID MARIAGE — Photographe à Marseille">
+<meta property="og:description" content="Photographe de mariage, baptême et grands événements à Marseille. Équipe de 3 associés, 12 ans d'expérience, prestation garantie.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="dns-prefetch" href="https://unpkg.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -110,6 +120,7 @@
     color: var(--ink); font-size: 13px; letter-spacing: 0.06em;
     border-bottom: 1px solid var(--ink); padding-bottom: 2px;
     transition: color 0.2s, border-color 0.2s;
+    cursor: pointer;
   }
   .btn-link:hover { color: var(--accent); border-color: var(--accent); }
 
@@ -571,6 +582,7 @@
     font-size: 14px; cursor: pointer; color: var(--soft);
     border-left: 2px solid transparent;
     transition: all 0.18s;
+    user-select: none;
   }
   .faq-cat:hover { color: var(--ink); }
   .faq-cat.on { color: var(--ink); background: var(--paper-2); border-left-color: var(--accent); font-weight: 500; }
@@ -816,8 +828,8 @@
   </div>
 </footer>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
 <script type="text/babel" src="tweaks-panel.jsx"></script>
