@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MAJID MARIAGE — Photographe à Marseille</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f6f2ec;
+    --paper-2: #fbf8f3;
+    --ink: #1c1916;
+    --ink-2: #3a352e;
+    --soft: #6b645a;
+    --softer: #a39d92;
+    --line: #1c1916;
+    --hairline: rgba(28,25,22,0.14);
+    --accent: #b85a3a;
+    --accent-2: #9a4830;
+    --shadow: 0 24px 60px -20px rgba(28,25,22,0.25), 0 6px 20px -8px rgba(28,25,22,0.15);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  body.locked { overflow: hidden; }
+  img { display: block; max-width: 100%; }
+
+  .serif { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+  .mono  { font-family: 'DM Mono', monospace; }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ─── NAV ─────────────────────────────────────── */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(246,242,236,0.86);
+    backdrop-filter: saturate(160%) blur(14px);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .nav-inner {
+    max-width: 1320px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 32px;
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif; font-weight: 500;
+    font-size: 22px; letter-spacing: 0.22em; color: var(--ink);
+  }
+  .logo em { font-style: italic; font-weight: 400; opacity: 0.88; letter-spacing: 0.1em; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-size: 13px; letter-spacing: 0.06em; color: var(--ink-2);
+    transition: color 0.2s; padding: 4px 0; position: relative;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a.active { color: var(--accent); }
+  .nav-links a.active::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -2px;
+    height: 1px; background: var(--accent);
+  }
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ink); color: var(--paper);
+    padding: 10px 18px; border-radius: 999px;
+    font-size: 13px; letter-spacing: 0.04em; font-weight: 500;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent); }
+  .nav-burger { display: none; background: none; border: 0; cursor: pointer; padding: 8px; }
+  .nav-burger span { display: block; width: 22px; height: 1.5px; background: var(--ink); margin: 4px 0; }
+
+  /* ─── PAGE chrome ─────────────────────────────── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  .container { max-width: 1320px; margin: 0 auto; padding: 0 32px; }
+  .container-narrow { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--accent); display: inline-flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+
+  .h1 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(48px, 7vw, 96px); line-height: 1.15; letter-spacing: -0.01em; padding-bottom: 0.35em; }
+  .h1 em { font-style: italic; font-weight: 400; }
+  .h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(36px, 4.5vw, 60px); line-height: 1.05; letter-spacing: -0.005em; }
+  .h2 em { font-style: italic; }
+  .h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.15; }
+  .lead { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.5; color: var(--ink-2); }
+  p { line-height: 1.65; color: var(--ink-2); }
+
+  /* buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 26px; border-radius: 999px;
+    font-size: 13px; letter-spacing: 0.06em; font-weight: 500;
+    transition: all 0.25s ease; cursor: pointer; border: none; font-family: inherit;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: var(--accent-2); transform: translateY(-1px); }
+  .btn-dark { background: var(--ink); color: var(--paper); }
+  .btn-dark:hover { background: var(--accent); }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+  .btn-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--ink); font-size: 13px; letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--ink); padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-link:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ─── HOME — HERO (mix A asymetric + B centered cartouche) ── */
+  .hero {
+    position: relative;
+    padding: 80px 0 100px;
+    overflow: hidden;
+  }
+  .hero-grid {
+    max-width: 1320px; margin: 0 auto; padding: 0 32px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    align-items: center;
+  }
+  .hero-text { position: relative; }
+  .hero-text .h1 { margin: 18px 0 0; }
+  .hero-meta {
+    margin-top: 32px; display: flex; gap: 32px; flex-wrap: wrap;
+    padding-top: 24px; border-top: 1px solid var(--hairline);
+  }
+  .hero-meta div { font-size: 13px; color: var(--soft); }
+  .hero-meta strong { display: block; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 22px; color: var(--ink); margin-bottom: 2px; }
+  .hero-actions { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
+
+  .hero-photos { position: relative; height: 600px; }
+  .hero-photo-1 {
+    position: absolute; top: 0; right: 60px;
+    width: 60%; height: 70%;
+    background-size: cover; background-position: center;
+    box-shadow: var(--shadow);
+  }
+  .hero-photo-2 {
+    position: absolute; bottom: 0; left: 0;
+    width: 56%; height: 56%;
+    background-size: cover; background-position: center;
+    box-shadow: var(--shadow);
+  }
+  .hero-stamp {
+    position: absolute; top: 30%; left: 0; transform: translate(-30%, 0) rotate(-6deg);
+    background: var(--paper);
+    padding: 14px 22px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    z-index: 2;
+  }
+  .hero-stamp .num { font-family: 'Cormorant Garamond', serif; font-size: 38px; line-height: 1; color: var(--accent); }
+  .hero-stamp .lbl { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--soft); margin-top: 4px; }
+
+  /* trust strip */
+  .trust {
+    border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+    padding: 22px 0; overflow: hidden;
+    background: var(--paper);
+  }
+  .trust-track {
+    display: flex; gap: 60px; align-items: center;
+    font-family: 'Cormorant Garamond', serif; font-size: 16px; letter-spacing: 0.18em;
+    white-space: nowrap;
+    animation: marquee 50s linear infinite;
+  }
+  .trust-track > div { display: inline-flex; align-items: center; gap: 60px; flex-shrink: 0; }
+  .trust-track .dot { color: var(--accent); }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* manifesto / quote section (Direction B feel) */
+  .manifesto {
+    padding: 140px 0 120px;
+    text-align: center;
+    background: var(--paper);
+  }
+  .manifesto .lead-big {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-weight: 400;
+    font-size: clamp(28px, 3.5vw, 44px);
+    line-height: 1.3;
+    max-width: 800px; margin: 24px auto 0;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .manifesto-sig {
+    margin-top: 32px;
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: 0.2em; color: var(--soft);
+  }
+
+  /* services */
+  .services {
+    padding: 120px 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .services-head { text-align: center; margin-bottom: 70px; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .service-card {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: var(--ink);
+    cursor: pointer;
+  }
+  .service-card-img {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    transition: transform 0.8s ease;
+  }
+  .service-card:hover .service-card-img { transform: scale(1.05); }
+  .service-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.7) 100%);
+  }
+  .service-card-content {
+    position: absolute; inset: 0;
+    padding: 36px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    color: white; z-index: 2;
+  }
+  .service-card-content .num { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.24em; opacity: 0.7; margin-bottom: 10px; }
+  .service-card-content .title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; line-height: 1; margin-bottom: 8px; }
+  .service-card-content .desc { font-size: 13px; opacity: 0.85; line-height: 1.55; max-width: 280px; }
+  .service-card-content .arrow { margin-top: 18px; font-size: 13px; letter-spacing: 0.06em; display: inline-flex; gap: 8px; align-items: center; }
+
+  /* portfolio teaser */
+  .portfolio-tease {
+    padding: 120px 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .portfolio-head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 24px; margin-bottom: 50px; flex-wrap: wrap;
+  }
+
+  /* portfolio grids — three styles, switchable */
+  .pf-grid { display: grid; gap: 8px; }
+  .pf-grid.mosaic { grid-template-columns: 2fr 1fr 1fr; grid-auto-rows: 180px; }
+  .pf-grid.mosaic > :nth-child(1) { grid-row: span 2; }
+  .pf-grid.mosaic > :nth-child(6) { grid-column: span 2; }
+
+  .pf-grid.regular { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 280px; }
+
+  .pf-grid.editorial {
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 90px;
+  }
+  .pf-grid.editorial > :nth-child(1) { grid-column: 1 / 7; grid-row: span 4; }
+  .pf-grid.editorial > :nth-child(2) { grid-column: 7 / 13; grid-row: span 3; }
+  .pf-grid.editorial > :nth-child(3) { grid-column: 7 / 10; grid-row: span 3; }
+  .pf-grid.editorial > :nth-child(4) { grid-column: 10 / 13; grid-row: span 3; }
+  .pf-grid.editorial > :nth-child(5) { grid-column: 1 / 5; grid-row: span 3; }
+  .pf-grid.editorial > :nth-child(6) { grid-column: 5 / 13; grid-row: span 3; }
+
+  .pf-tile {
+    background-size: cover; background-position: center;
+    background-color: #d8d2c8;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.4s ease;
+  }
+  .pf-tile:hover { transform: translateY(-2px); }
+  .pf-tile::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0);
+    transition: background 0.3s;
+  }
+  .pf-tile:hover::after { background: rgba(0,0,0,0.08); }
+
+  /* numbers section */
+  .numbers {
+    padding: 120px 0;
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .numbers-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: rgba(255,255,255,0.12);
+  }
+  .number-cell {
+    background: var(--ink);
+    padding: 40px 28px;
+    text-align: center;
+  }
+  .number-cell .n { font-family: 'Cormorant Garamond', serif; font-size: 88px; line-height: 1; color: var(--accent); font-weight: 400; }
+  .number-cell .l { font-size: 13px; letter-spacing: 0.04em; color: rgba(246,242,236,0.7); margin-top: 12px; }
+
+  /* testimonials carousel-ish */
+  .testimonials {
+    padding: 120px 0;
+    border-top: 1px solid var(--hairline);
+    text-align: center;
+  }
+  .testimonials-track {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    margin-top: 60px;
+  }
+  .testimonial {
+    text-align: left;
+    padding: 36px 32px;
+    background: var(--paper-2);
+    border: 1px solid var(--hairline);
+  }
+  .testimonial .stars { color: var(--accent); letter-spacing: 4px; font-size: 14px; }
+  .testimonial .q {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px;
+    line-height: 1.4; margin: 16px 0 24px; color: var(--ink);
+  }
+  .testimonial .who { font-size: 13px; font-weight: 500; }
+  .testimonial .ctx { font-size: 12px; color: var(--soft); margin-top: 2px; }
+
+  /* CTA band */
+  .cta-band {
+    padding: 140px 0;
+    text-align: center;
+    background:
+      linear-gradient(rgba(28,25,22,0.55), rgba(28,25,22,0.55)),
+      var(--cta-img, none) center/cover;
+    color: white;
+  }
+  .cta-band .h2 { color: white; max-width: 720px; margin: 16px auto 0; }
+  .cta-band .lead { color: rgba(255,255,255,0.85); margin-top: 24px; max-width: 540px; margin-left: auto; margin-right: auto; }
+  .cta-band .btn { margin-top: 36px; }
+
+  /* ─── FOOTER ────────────────────────────────────── */
+  footer {
+    background: var(--ink); color: var(--paper);
+    padding: 80px 0 40px;
+  }
+  .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; }
+  .foot-grid h4 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 18px; margin: 0 0 16px; letter-spacing: 0.04em; }
+  .foot-grid a, .foot-grid p { color: rgba(246,242,236,0.7); font-size: 13px; line-height: 2; }
+  .foot-grid a:hover { color: var(--accent); }
+  .foot-bottom {
+    margin-top: 60px; padding-top: 24px;
+    border-top: 1px solid rgba(246,242,236,0.15);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: rgba(246,242,236,0.5);
+  }
+
+  /* ─── PORTFOLIO PAGE ────────────────────────────── */
+  .pf-hero { padding: 80px 0 50px; text-align: center; }
+  .pf-filters {
+    display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+    padding: 20px 0 50px;
+  }
+  .pf-filter {
+    padding: 10px 20px; border-radius: 999px;
+    background: transparent; border: 1px solid var(--hairline);
+    font-size: 13px; cursor: pointer; font-family: inherit;
+    color: var(--ink-2);
+    transition: all 0.2s;
+  }
+  .pf-filter:hover { border-color: var(--ink); }
+  .pf-filter.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  /* ─── PRICING PAGE ──────────────────────────────── */
+  .pricing-hero { padding: 80px 0 60px; text-align: center; }
+  .pricing-table {
+    margin: 60px 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  .pricing-row {
+    display: grid; grid-template-columns: 2.4fr 1fr 1fr 1fr;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .pricing-row:last-child { border-bottom: none; }
+  .pricing-row.head {
+    border-bottom: 1px solid var(--ink);
+    padding: 36px 0 24px;
+  }
+  .pricing-row.head .formula {
+    text-align: center; padding: 0 16px;
+  }
+  .pricing-row.head .formula .name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; }
+  .pricing-row.head .formula .price { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--accent); margin-top: 2px; }
+  .pricing-row.head .formula.featured {
+    position: relative;
+    background: var(--paper-2);
+    border-left: 1px solid var(--hairline);
+    border-right: 1px solid var(--hairline);
+  }
+  .pricing-row.head .formula.featured::before {
+    content: 'Choix populaire';
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: white;
+    padding: 4px 14px; border-radius: 999px;
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .pricing-row .label { padding-right: 16px; font-size: 14px; }
+  .pricing-row .label small { display: block; color: var(--soft); font-size: 12px; margin-top: 2px; }
+  .pricing-row .v { text-align: center; font-size: 14px; padding: 0 8px; }
+  .pricing-row .v.featured { background: var(--paper-2); padding: 16px 8px; margin: -16px 0; border-left: 1px solid var(--hairline); border-right: 1px solid var(--hairline); }
+  .check { color: var(--accent); font-size: 18px; }
+  .dash { color: var(--softer); }
+
+  .options-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+    margin: 24px 0;
+  }
+  .option {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 16px 18px;
+    background: var(--paper-2);
+    border: 1px solid var(--hairline);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .option:hover { border-color: var(--ink); }
+  .option.on { border-color: var(--accent); background: white; }
+  .option-check {
+    width: 22px; height: 22px; border: 1.5px solid var(--ink-2); border-radius: 4px;
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    background: white;
+    color: white;
+    font-size: 14px;
+  }
+  .option.on .option-check { background: var(--accent); border-color: var(--accent); }
+  .option-body { flex: 1; }
+  .option-title { font-size: 14px; font-weight: 500; }
+  .option-desc { font-size: 12px; color: var(--soft); margin-top: 2px; line-height: 1.4; }
+  .option-price { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--accent); white-space: nowrap; }
+
+  .total-bar {
+    margin-top: 32px;
+    padding: 24px 28px;
+    background: var(--ink); color: var(--paper);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; flex-wrap: wrap;
+    border-radius: 8px;
+  }
+  .total-bar .lab { font-size: 13px; letter-spacing: 0.06em; opacity: 0.7; }
+  .total-bar .total { font-family: 'Cormorant Garamond', serif; font-size: 44px; line-height: 1; color: var(--accent); }
+  .total-bar small { font-size: 12px; opacity: 0.6; }
+
+  /* ─── BOOKING PAGE ────────────────────────────── */
+  .booking-hero { padding: 80px 0 40px; text-align: center; }
+  .booking-steps {
+    display: flex; gap: 16px; justify-content: center; align-items: center;
+    margin: 30px 0 50px;
+    flex-wrap: wrap;
+  }
+  .step-dot {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .step-dot .num {
+    width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--ink-2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; background: var(--paper);
+  }
+  .step-dot.on .num { background: var(--accent); border-color: var(--accent); color: white; }
+  .step-dot.done .num { background: var(--ink); border-color: var(--ink); color: white; }
+  .step-dot .lab { font-size: 13px; color: var(--soft); }
+  .step-dot.on .lab { color: var(--ink); font-weight: 500; }
+  .step-sep { width: 40px; height: 1px; background: var(--hairline); }
+
+  .booking-grid {
+    display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px;
+    padding-bottom: 100px;
+  }
+
+  /* calendar */
+  .cal {
+    background: var(--paper-2);
+    border: 1px solid var(--hairline);
+    padding: 28px;
+    border-radius: 8px;
+  }
+  .cal-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .cal-head h3 { margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 24px; letter-spacing: 0.04em; }
+  .cal-nav {
+    width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--hairline);
+    background: white; cursor: pointer; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .cal-nav:hover { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+  .cal-dow {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.1em;
+    color: var(--soft); text-align: center; text-transform: uppercase;
+  }
+  .cal-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;
+  }
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.18s;
+    position: relative;
+    border: 1px solid transparent;
+  }
+  .cal-day.empty { cursor: default; }
+  .cal-day.busy { color: var(--softer); cursor: not-allowed; text-decoration: line-through; }
+  .cal-day.busy:hover { background: transparent; }
+  .cal-day.free:hover { background: var(--paper); border-color: var(--ink); }
+  .cal-day.free::after {
+    content: ''; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%);
+    width: 4px; height: 4px; border-radius: 50%; background: var(--accent);
+  }
+  .cal-day.picked { background: var(--accent); color: white; border-color: var(--accent); text-decoration: none; cursor: pointer; }
+  .cal-day.picked::after { display: none; }
+  .cal-day.today { font-weight: 600; }
+
+  .cal-legend { display: flex; gap: 18px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--hairline); font-size: 12px; color: var(--soft); flex-wrap: wrap; }
+  .cal-legend > div { display: flex; align-items: center; gap: 8px; }
+  .cal-legend .swatch { width: 12px; height: 12px; border-radius: 50%; }
+  .cal-legend .swatch.free { background: white; border: 1px solid var(--ink); position: relative; }
+  .cal-legend .swatch.free::after { content: ''; position: absolute; bottom: 1px; left: 50%; transform: translateX(-50%); width: 3px; height: 3px; border-radius: 50%; background: var(--accent); }
+  .cal-legend .swatch.picked { background: var(--accent); }
+  .cal-legend .swatch.busy { background: transparent; border: 1px solid var(--softer); }
+
+  .booking-side {
+    background: white;
+    border: 1px solid var(--hairline);
+    padding: 32px;
+    border-radius: 8px;
+    align-self: flex-start;
+    position: sticky; top: 100px;
+  }
+  .booking-side h3 { margin: 0 0 4px; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 26px; }
+  .booking-side .sub { font-size: 13px; color: var(--soft); }
+  .booking-side .field-label { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); margin: 24px 0 10px; font-family: 'DM Mono', monospace; }
+  .pill-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .pill {
+    padding: 8px 14px; border-radius: 999px;
+    border: 1px solid var(--hairline); background: var(--paper-2);
+    font-size: 13px; cursor: pointer; font-family: inherit;
+    color: var(--ink-2);
+    transition: all 0.18s;
+  }
+  .pill:hover { border-color: var(--ink); }
+  .pill.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .booking-foot {
+    margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--hairline);
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .booking-foot .acompte { font-size: 12px; color: var(--soft); }
+  .booking-foot .acompte strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--accent); font-weight: 500; margin-top: 2px; }
+
+  /* ─── FAQ PAGE ────────────────────────────────── */
+  .faq-hero { padding: 80px 0 40px; text-align: center; }
+  .faq-layout { display: grid; grid-template-columns: 240px 1fr; gap: 60px; padding-bottom: 100px; }
+  .faq-cats { position: sticky; top: 100px; align-self: flex-start; }
+  .faq-cat {
+    display: block; padding: 10px 14px; border-radius: 6px;
+    font-size: 14px; cursor: pointer; color: var(--soft);
+    border-left: 2px solid transparent;
+    transition: all 0.18s;
+  }
+  .faq-cat:hover { color: var(--ink); }
+  .faq-cat.on { color: var(--ink); background: var(--paper-2); border-left-color: var(--accent); font-weight: 500; }
+  .faq-list { display: flex; flex-direction: column; gap: 6px; }
+  .faq-item {
+    background: var(--paper-2); border: 1px solid var(--hairline);
+    border-radius: 6px; overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .faq-item:hover { border-color: var(--ink-2); }
+  .faq-q {
+    width: 100%; text-align: left;
+    padding: 22px 24px; background: transparent; border: none; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    font-family: inherit;
+    font-size: 17px; font-weight: 500; color: var(--ink);
+  }
+  .faq-q .plus {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--paper);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: var(--accent); flex-shrink: 0;
+    transition: transform 0.25s;
+  }
+  .faq-item.open .faq-q .plus { transform: rotate(45deg); background: var(--accent); color: white; }
+  .faq-a {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+  }
+  .faq-item.open .faq-a { max-height: 600px; padding: 0 24px 24px; }
+  .faq-a p { margin: 0; font-size: 14px; line-height: 1.7; }
+
+  /* ─── CONTACT ─────────────────────────────────── */
+  .contact-hero { padding: 80px 0; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; padding-bottom: 100px; }
+  .contact-info { padding-top: 12px; }
+  .contact-info h2 em { display: block; }
+  .contact-info p { margin: 24px 0 36px; max-width: 380px; }
+  .contact-card {
+    display: flex; gap: 16px; align-items: center;
+    padding: 18px 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .contact-card:last-child { border-bottom: 1px solid var(--hairline); }
+  .contact-icon {
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 1px solid var(--ink); display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+  }
+  .contact-card .lab { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); font-family: 'DM Mono', monospace; }
+  .contact-card .val { font-size: 16px; font-weight: 500; margin-top: 2px; }
+
+  form.contact-form {
+    background: white; border: 1px solid var(--hairline);
+    padding: 40px; border-radius: 8px;
+  }
+  .field { margin-bottom: 22px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .field label {
+    display: block; font-size: 12px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--soft);
+    margin-bottom: 8px; font-family: 'DM Mono', monospace;
+  }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 12px 0; border: 0;
+    border-bottom: 1px solid var(--hairline);
+    background: transparent; font-family: inherit; font-size: 16px; color: var(--ink);
+    transition: border-color 0.2s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-bottom-color: var(--accent);
+  }
+  .field textarea { resize: vertical; min-height: 120px; padding: 12px; border: 1px solid var(--hairline); border-radius: 6px; margin-top: 2px; }
+  .checkbox { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--soft); }
+  .checkbox input { width: auto; }
+
+  /* ─── REVIEWS ──────────────────────────────────── */
+  .rv-hero { padding: 80px 0 30px; text-align: center; }
+  .rv-rating {
+    display: flex; align-items: center; justify-content: center; gap: 24px;
+    margin: 28px 0 50px;
+  }
+  .rv-rating .num { font-family: 'Cormorant Garamond', serif; font-size: 64px; color: var(--accent); line-height: 1; }
+  .rv-rating .stars { color: var(--accent); font-size: 18px; letter-spacing: 4px; }
+  .rv-rating .src { font-size: 13px; color: var(--soft); margin-top: 4px; }
+  .rv-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    padding-bottom: 100px;
+  }
+  .rv-card {
+    background: var(--paper-2); border: 1px solid var(--hairline);
+    padding: 28px; border-radius: 6px;
+    display: flex; flex-direction: column;
+  }
+  .rv-card .stars { color: var(--accent); letter-spacing: 4px; font-size: 14px; }
+  .rv-card .q {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 20px; line-height: 1.45;
+    margin: 16px 0 24px;
+    flex: 1;
+  }
+  .rv-card .who { font-size: 14px; font-weight: 500; }
+  .rv-card .ctx { font-size: 12px; color: var(--soft); margin-top: 2px; }
+
+  /* ─── ABOUT ────────────────────────────────────── */
+  .about-hero { padding: 80px 0; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; }
+  .about-photo-stack { position: relative; height: 600px; }
+  .about-photo {
+    position: absolute;
+    background-size: cover; background-position: center;
+    box-shadow: var(--shadow);
+  }
+  .about-photo.main { top: 0; left: 0; width: 78%; height: 84%; }
+  .about-photo.small { bottom: 0; right: 0; width: 50%; height: 40%; }
+
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; padding: 80px 0; border-top: 1px solid var(--hairline); }
+  .team-card .photo { aspect-ratio: 4/5; background-size: cover; background-position: center; margin-bottom: 18px; }
+  .team-card .name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; }
+  .team-card .role { font-size: 13px; color: var(--soft); margin-top: 2px; letter-spacing: 0.04em; }
+  .team-card .bio { font-size: 14px; margin-top: 12px; line-height: 1.6; }
+
+  .guarantee {
+    padding: 80px 0;
+    background: var(--ink); color: var(--paper);
+  }
+  .guarantee-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 50px; }
+  .guarantee-card .num { font-family: 'Cormorant Garamond', serif; font-size: 56px; color: var(--accent); line-height: 1; }
+  .guarantee-card h4 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 24px; margin: 12px 0 8px; }
+  .guarantee-card p { color: rgba(246,242,236,0.75); font-size: 14px; margin: 0; }
+
+  /* ─── RESPONSIVE ───────────────────────────────── */
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-photos { height: 460px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .pf-grid.mosaic, .pf-grid.regular, .pf-grid.editorial { grid-template-columns: 1fr 1fr; grid-auto-rows: 220px; }
+    .pf-grid.mosaic > :nth-child(1), .pf-grid.mosaic > :nth-child(6) { grid-row: auto; grid-column: auto; }
+    .pf-grid.editorial > * { grid-column: auto !important; grid-row: auto !important; }
+    .numbers-grid { grid-template-columns: 1fr 1fr; }
+    .testimonials-track { grid-template-columns: 1fr; }
+    .foot-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .pricing-row { grid-template-columns: 1.5fr 1fr 1fr 1fr; font-size: 12px; }
+    .booking-grid { grid-template-columns: 1fr; }
+    .booking-side { position: static; }
+    .faq-layout { grid-template-columns: 1fr; gap: 32px; }
+    .faq-cats { position: static; display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; }
+    .faq-cat { white-space: nowrap; border-left: none; border-bottom: 2px solid transparent; }
+    .faq-cat.on { border-left: none; border-bottom-color: var(--accent); background: transparent; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .rv-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-photo-stack { height: 460px; }
+    .team-grid { grid-template-columns: 1fr; }
+    .guarantee-grid { grid-template-columns: 1fr; }
+    .options-grid { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 680px) {
+    .nav-links, .nav-cta { display: none; }
+    .nav-burger { display: block; }
+    .nav.menu-open .nav-links { display: flex; flex-direction: column; gap: 20px; padding: 24px 32px 32px; background: var(--paper); border-top: 1px solid var(--hairline); position: absolute; left: 0; right: 0; top: 100%; }
+    .nav.menu-open .nav-cta { display: inline-flex; margin: 0 32px 24px; align-self: flex-start; }
+    .container, .container-narrow { padding: 0 20px; }
+    .nav-inner { padding: 16px 20px; }
+    .pricing-row { grid-template-columns: 1fr; padding: 12px 0; }
+    .pricing-row.head { display: none; }
+    .pricing-row .v { text-align: left; padding: 4px 0; }
+    .pricing-row .v::before { content: attr(data-label) ' : '; color: var(--soft); font-weight: 500; margin-right: 6px; }
+    .pricing-row .v.featured { background: transparent; padding: 4px 0; margin: 0; border: none; }
+    .h1 { font-size: 44px; }
+    .booking-steps { gap: 8px; }
+    .step-sep { width: 16px; }
+    .step-dot .lab { display: none; }
+    .step-dot.on .lab { display: inline; font-size: 12px; }
+  }
+
+  /* utility */
+  .center { text-align: center; }
+  .mt-4 { margin-top: 24px; } .mt-8 { margin-top: 48px; }
+  .mb-4 { margin-bottom: 24px; }
+
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─────────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#accueil" class="logo" data-link="accueil">MAJID <em>mariage</em></a>
+    <div class="nav-links">
+      <a href="#accueil" data-link="accueil">Accueil</a>
+      <a href="#portfolio" data-link="portfolio">Portfolio</a>
+      <a href="#prestations" data-link="prestations">Prestations</a>
+      <a href="#temoignages" data-link="temoignages">Témoignages</a>
+      <a href="#equipe" data-link="equipe">L'équipe</a>
+      <a href="#faq" data-link="faq">FAQ</a>
+      <a href="#contact" data-link="contact">Contact</a>
+    </div>
+    <a href="#reservation" class="nav-cta" data-link="reservation">Vérifier ma date →</a>
+    <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main id="main"></main>
+
+<!-- ─── FOOTER ────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="color:var(--paper); margin-bottom:14px;">MAJID <em>mariage</em></div>
+        <p>Photographie de mariage, baptême et grandes réceptions à Marseille et 150 km autour. Une équipe de 3 associés. 12 ans d'histoires.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <a href="#portfolio" data-link="portfolio">Portfolio</a><br>
+        <a href="#prestations" data-link="prestations">Prestations & tarifs</a><br>
+        <a href="#reservation" data-link="reservation">Réserver une date</a><br>
+        <a href="#temoignages" data-link="temoignages">Témoignages</a><br>
+        <a href="#equipe" data-link="equipe">L'équipe</a><br>
+        <a href="#faq" data-link="faq">FAQ</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:hello@majidmariage.fr">hello@majidmariage.fr</a><br>
+        <a href="tel:+33600000000">+33 6 ·· ·· ·· ··</a><br>
+        <p style="margin-top:8px;">Studio à Marseille<br>Déplacements 150 km</p>
+      </div>
+      <div>
+        <h4>Suivre</h4>
+        <a href="#">Instagram</a><br>
+        <a href="#">Pinterest</a><br>
+        <a href="#">Mariages.net</a><br>
+        <a href="#">Vimeo</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 MAJID MARIAGE — tous droits réservés</span>
+      <span>Mentions légales · CGV · Confidentialité</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="site-data.jsx"></script>
+<script type="text/babel" src="site-pages.jsx"></script>
+<script type="text/babel" src="site-app.jsx"></script>
+
+</body>
+</html>
